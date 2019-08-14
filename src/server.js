@@ -12,6 +12,11 @@ app.get('/fetch', function (req, res) {
   }
   console.log('fetch-----')
   fetch(query).end((err, res1) => {
+      if(err){
+        res.send('数据获取失败！');
+        res.end()
+        return
+      }
     // console.log(res.text)
     let $ = cheerio.load(res1.text);
 
