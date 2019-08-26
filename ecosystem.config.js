@@ -22,7 +22,7 @@ module.exports = {
       user : 'root',
       host : '47.96.231.177',
       ref  : 'origin/master',
-      repo : 'https://github.com/zqyue/runner',
+      repo : 'https://github.com/zqyue/runner/',
       path : '/root/server/runner',
       "ssh_options": "StrictHostKeyChecking=no",
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
