@@ -2,14 +2,11 @@ const express = require('express');
 const superagent = require('superagent')
 const cheerio = require('cheerio');
 
-let fetchQuery, infoUrl
-
 var app = express();
 app.get('/fetch', dealParams, fetchData, getScore);
 app.listen(3000, function () {
 
 });
-
 
 function dealParams(req, res, next) {
   console.log('dealparams---')
@@ -19,14 +16,14 @@ function dealParams(req, res, next) {
     res.end()
     return
   }
-  fetchQuery = query
+  req.fetchQuery=query
   next()
 }
 
 function fetchData(req, res, next) {
   console.log('fetchdata---')
 
-  fetch(fetchQuery).end((err, res1) => {
+  fetch(req.fetchQuery).end((err, res1) => {
 
     if (err) {
       res.send('数据获取失败！');
@@ -51,13 +48,13 @@ function fetchData(req, res, next) {
       res.end()
       return
     }
-    infoUrl = 'https://itra.run' + arr[0].url
+    req.infoUrl='https://itra.run' + arr[0].url
     next()
   })
 }
 function getScore(req, res) {
   console.log('getscore---')
-  superagent.get(infoUrl).end((err, res1) => {
+  superagent.get(req.infoUrl).end((err, res1) => {
     if (err) {
       res.send('详情页获取失败！');
       res.end()
