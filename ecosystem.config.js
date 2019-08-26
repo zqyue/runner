@@ -4,7 +4,7 @@ module.exports = {
     script: './app.js',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
-    args: 'one two',
+    // args: 'one two',
     instances: 1,
     autorestart: true,
     watch: false,
@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/zqyue/runner/',
       path : '/root/server/runner',
-      "ssh_options": "StrictHostKeyChecking=no",
+      ssh_options: "StrictHostKeyChecking=no",
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
