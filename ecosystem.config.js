@@ -24,7 +24,7 @@ module.exports = {
       ref  : 'origin/master',
       repo : 'https://github.com/zqyue/runner/',
       path : '/root/server/runner',
-      ssh_options: "StrictHostKeyChecking=no",
+      ssh_options: ["StrictHostKeyChecking=no","PasswordAuthentication=no"],
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
     }
   }
