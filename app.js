@@ -19,7 +19,7 @@ function dealParams(req, res, next) {
   req.fetchQuery=query
   next()
 }
-
+console.log('test')
 function fetchData(req, res, next) {
   console.log('fetchdata---')
 
