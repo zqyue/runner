@@ -40,8 +40,8 @@
     data() {
       return {
         params: {
-          surname: 'PAN',
-          name: 'Tengfeng'
+          surname: '',
+          name: ''
         },
         isSearch: false,
         resultList:null,
