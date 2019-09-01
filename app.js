@@ -3,10 +3,22 @@ const superagent = require('superagent')
 const cheerio = require('cheerio');
 
 var app = express();
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("X-Powered-By",' 3.2.1')
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+
+
 app.get('/fetch', dealParams, fetchData, getScore);
 app.listen(3000, function () {
 
 });
+
+app.get('/score',getScore2)
 
 function dealParams(req, res, next) {
   console.log('dealparams---')
@@ -52,9 +64,28 @@ function fetchData(req, res, next) {
     next()
   })
 }
+
+
 function getScore(req, res) {
   console.log('getscore---')
   superagent.get(req.infoUrl).end((err, res1) => {
+    if (err) {
+      res.send('详情页获取失败！');
+      res.end()
+      return
+    }
+    let $ = cheerio.load(res1.text);
+    let score = $('tr:first-child b:first-child ').text()
+    res.send(score)
+  })
+}
+
+
+function getScore2(req, res) {
+  console.log('getscore---')
+
+
+  superagent.get(req.query.infoUrl).end((err, res1) => {
     if (err) {
       res.send('详情页获取失败！');
       res.end()
