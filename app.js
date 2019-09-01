@@ -34,6 +34,7 @@ function dealParams(req, res, next) {
 console.log('test')
 function fetchData(req, res, next) {
   console.log('fetchdata---')
+  console.log(req.fetchQuery)
 
   fetch(req.fetchQuery).end((err, res1) => {
 

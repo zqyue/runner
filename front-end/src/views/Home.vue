@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script>
+<script >
   // @ is an alias to /src
   // import HelloWorld from '@/components/HelloWorld.vue'
   import {fetch, getScore} from "../js/request";
@@ -40,8 +40,8 @@
     data() {
       return {
         params: {
-          surname: '',
-          name: ''
+          surname: 'PAN',
+          name: 'Tengfeng'
         },
         isSearch: false,
         resultList:null,
@@ -55,11 +55,13 @@
         }
         this.isSearch=true
         getScore(params).end((err,res)=>{
+          this.isSearch=false
+
           if (err) {
+            alert('数据获取失败')
             return
           }
           this.score = res.text
-          this.isSearch=false
 
         })
 
@@ -67,16 +69,17 @@
       search() {
         if (!this.params.surname || !this.params.name) {
           alert('请补全参数')
+          return
         }
         this.score=null
         this.isSearch = true
         this.resultList=null
         fetch(this.params).end((err, res) => {
+          this.isSearch=false
           if (err) {
+            alert('数据获取失败')
             return
           }
-          // this.score=res.text
-          // this.isSearch=false
           let data = JSON.parse(res.text)
           console.log(data)
           this.isSearch=false
