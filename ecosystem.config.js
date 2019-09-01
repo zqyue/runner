@@ -25,7 +25,7 @@ module.exports = {
       repo : 'https://github.com/zqyue/runner/',
       path : '/root/server/runner',
       ssh_options: ["StrictHostKeyChecking=no","PasswordAuthentication=no"],
-      'post-deploy' : 'chmod -x ecosystem.config.js && npm install && pm2 reload ecosystem.config.js --env production',
+      // 'post-deploy' : 'chmod -x ecosystem.config.js && npm install && pm2 reload ecosystem.config.js --env production',
     }
   }
 };
